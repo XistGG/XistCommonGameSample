@@ -24,4 +24,8 @@ class UXcgsGameViewportClient : public UCommonGameViewportClient
 public:
 	UXcgsGameViewportClient(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
+	//~UGameViewportClient interface
+	virtual void Init(FWorldContext& WorldContext, UGameInstance* OwningGameInstance, bool bCreateNewAudioDevice) override;
+	//~End of UGameViewportClient
+
 };
