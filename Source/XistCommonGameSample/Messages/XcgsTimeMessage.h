@@ -19,6 +19,6 @@ struct XISTCOMMONGAMESAMPLE_API FXcgsTimeMessage
 	FGameplayTag Verb;
 
 	UPROPERTY(BlueprintReadWrite)
-	float TimeSinceChanged;
+	float TimeSinceChanged {-1.f};
 
 };
