@@ -23,28 +23,28 @@ UEnhancedInputLocalPlayerSubsystem* UXcgsHelpers::GetEnhancedInputLocalPlayerSub
 
 
 // This allows Blueprints to send messages to the usual error log stream
-void UXcgsHelpers::XcgsErrorLog(UObject* LogObject, FString LogMessage)
+void UXcgsHelpers::ErrorLog(UObject* LogObject, FString LogMessage)
 {
 	XCGS_ERROR_LOG(TEXT("Error: [%s]: %s"), *GetNameSafe(LogObject), *LogMessage);
 }
 
 
 // This allows Blueprints to send messages to the usual warning log stream
-void UXcgsHelpers::XcgsWarningLog(UObject* LogObject, FString LogMessage)
+void UXcgsHelpers::WarningLog(UObject* LogObject, FString LogMessage)
 {
 	XCGS_WARNING_LOG(TEXT("Warning: [%s]: %s"), *GetNameSafe(LogObject), *LogMessage);
 }
 
 
 // This allows Blueprints to send messages to the usual log stream
-void UXcgsHelpers::XcgsLog(UObject* LogObject, FString LogMessage)
+void UXcgsHelpers::LogMessage(UObject* LogObject, FString LogMessage)
 {
 	XCGS_LOG(TEXT("[%s]: %s"), *GetNameSafe(LogObject), *LogMessage);
 }
 
 
 // This allows Blueprints to send messages to the usual display log stream
-void UXcgsHelpers::XcgsDisplayLog(UObject* LogObject, FString LogMessage)
+void UXcgsHelpers::DisplayLog(UObject* LogObject, FString LogMessage)
 {
 	XCGS_DISPLAY_LOG(TEXT("[%s]: %s"), *GetNameSafe(LogObject), *LogMessage);
 }
