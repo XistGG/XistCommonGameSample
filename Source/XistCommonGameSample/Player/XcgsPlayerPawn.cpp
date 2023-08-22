@@ -2,7 +2,7 @@
 
 #include "XcgsPlayerPawn.h"
 
-#include "UI/XcgsHUDLayout.h"
+#include "UI/Foundation/XcgsHUDLayout.h"
 #include "CommonUIExtensions.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"

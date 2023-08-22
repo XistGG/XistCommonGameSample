@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "XcgsActivatableWidget.h"
+#include "UI/XcgsActivatableWidget.h"
 #include "XcgsHUDLayout.generated.h"
 
 
