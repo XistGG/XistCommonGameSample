@@ -10,7 +10,10 @@
 /**
  * CommonGame LocalPlayer
  *
- * @see DefaultEngine.ini where this class is configured to be used as the ULocalPlayer in [/Script/Engine.Engine] LocalPlayerClassName=/Script/XistCommonGameSample.XcgsLocalPlayer
+ * Must be configured in DefaultEngine.ini:
+ * 
+ * [/Script/Engine.Engine]
+ * LocalPlayerClassName=/Script/XistCommonGameSample.XcgsLocalPlayer
  */
 UCLASS(meta=(Category=Xcgs))
 class XISTCOMMONGAMESAMPLE_API UXcgsLocalPlayer : public UCommonLocalPlayer

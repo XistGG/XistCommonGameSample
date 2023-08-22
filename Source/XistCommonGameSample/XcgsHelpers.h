@@ -9,6 +9,11 @@
 class UEnhancedInputLocalPlayerSubsystem;
 
 
+/**
+ * XcgsHelpers
+ *
+ * Static helper methods for C++ and Blueprints
+ */
 UCLASS()
 class XISTCOMMONGAMESAMPLE_API UXcgsHelpers : public UBlueprintFunctionLibrary
 {

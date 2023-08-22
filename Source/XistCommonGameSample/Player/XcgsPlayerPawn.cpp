@@ -2,7 +2,7 @@
 
 #include "XcgsPlayerPawn.h"
 
-#include "UI/XcgsHUDLayout.h"
+#include "UI/Foundation/XcgsHUDLayout.h"
 #include "CommonUIExtensions.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -11,7 +11,7 @@
 #include "XcgsInputConfig.h"
 #include "XcgsLog.h"
 #include "Core/XcgsGameState.h"
-#include "Core/XcgsHelpers.h"
+#include "XcgsHelpers.h"
 
 
 // Sets default values
