@@ -10,7 +10,10 @@
 /**
  * CommonGame Game Instance
  *
- * @see DefaultEngine.ini where this class is configured to be used as the UGameInstance in [/Script/Engine.Engine] GameInstanceClass=/Script/XistCommonGameSample.XcgsGameInstance
+ * Must be configured in DefaultEngine.ini:
+ *
+ * [/Script/EngineSettings.GameMapsSettings]
+ * GameInstanceClass=/Script/XistCommonGameSample.XcgsGameInstance
  */
 UCLASS(meta=(Category=Xcgs))
 class XISTCOMMONGAMESAMPLE_API UXcgsGameInstance : public UCommonGameInstance
