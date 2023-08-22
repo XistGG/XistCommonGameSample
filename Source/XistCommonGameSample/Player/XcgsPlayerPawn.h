@@ -45,7 +45,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, DisplayName="HUD Layout Class")
 	TSubclassOf<UXcgsHUDLayout> HUDLayoutClass;
 
-	UPROPERTY(Transient)
+	/** Used to keep track of the widget that was created to be our HUD */
+	UPROPERTY(Transient, VisibleInstanceOnly)
 	TWeakObjectPtr<UCommonActivatableWidget> HUDLayoutWidget;
 
 	/** Array of IMC to use while this Pawn is possessed */
@@ -75,10 +76,10 @@ protected:
 	void Input_Zoom(const FInputActionValue& InputActionValue);
 
 private:
-	UPROPERTY(Transient)
+	UPROPERTY(Transient, VisibleInstanceOnly)
 	TSet<int32> InputEventBindingHandles;
 
-	UPROPERTY(Transient)
+	UPROPERTY(Transient, VisibleInstanceOnly)
 	FVector CameraOffset;
 
 };
