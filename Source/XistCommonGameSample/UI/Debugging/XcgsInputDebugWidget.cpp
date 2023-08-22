@@ -76,13 +76,13 @@ void UXcgsInputDebugWidget::GetUIInputConfigData(FText& MouseCaptureModeText, FT
 				MouseCaptureModeText = FText::FromString(TEXT("CapPerm"));
 				break;
 			case EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown:
-				MouseCaptureModeText = FText::FromString(TEXT("CapInit"));
+				MouseCaptureModeText = FText::FromString(TEXT("CapPermInit"));
 				break;
 			case EMouseCaptureMode::CaptureDuringMouseDown:
-				MouseCaptureModeText = FText::FromString(TEXT("CapDurL"));
+				MouseCaptureModeText = FText::FromString(TEXT("CapDuringMD"));
 				break;
 			case EMouseCaptureMode::CaptureDuringRightMouseDown:
-				MouseCaptureModeText = FText::FromString(TEXT("CapDurR"));
+				MouseCaptureModeText = FText::FromString(TEXT("CapDurRMDOnly"));
 				break;
 			case EMouseCaptureMode::NoCapture:
 				MouseCaptureModeText = FText::FromString(TEXT("NoCap"));
