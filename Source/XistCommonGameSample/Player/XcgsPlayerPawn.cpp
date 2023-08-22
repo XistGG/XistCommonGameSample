@@ -11,7 +11,7 @@
 #include "XcgsInputConfig.h"
 #include "XcgsLog.h"
 #include "Core/XcgsGameState.h"
-#include "Core/XcgsHelpers.h"
+#include "XcgsHelpers.h"
 
 
 // Sets default values
