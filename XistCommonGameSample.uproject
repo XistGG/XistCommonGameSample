@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 3,
 	"VersionName": "0.0.3.0",
-	"EngineAssociation": "XUE53",
+	"EngineAssociation": "5.3",
 	"Description": "Sample from Lyra 5.3 of CommonGame and its dependencies in a simple single player project",
 	"Category": "Gameplay",
 	"CreatedBy": "Xist.GG",
