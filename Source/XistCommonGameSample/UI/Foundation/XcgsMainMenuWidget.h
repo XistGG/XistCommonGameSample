@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
@@ -25,9 +25,10 @@ class XISTCOMMONGAMESAMPLE_API UXcgsMainMenuWidget : public UXcgsActivatableWidg
 public:
 	UXcgsMainMenuWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
-	//~UUserWidget interface
-	virtual void NativeOnInitialized() override;
-	//~End of UUserWidget interface
+	//~Begin UUserWidget interface
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+	//~End UUserWidget interface
 
 	//~UCommonActivatableWidget interface
 	virtual void NativeOnActivated() override;
@@ -43,10 +44,11 @@ protected:
 	TSubclassOf<UXcgsActivatableWidget> BlankWidgetClass;
 
 private:
+	FUIActionBindingHandle MenuActionHandle;
+
 	UPROPERTY(Transient)
 	TWeakObjectPtr<UCommonActivatableWidget> BlankGameWidget;
 
 	UPROPERTY(Transient)
 	TWeakObjectPtr<UCommonActivatableWidget> BlankGameMenuWidget;
-
 };
