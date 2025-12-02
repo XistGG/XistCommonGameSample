@@ -10,6 +10,11 @@
 UXcgsHUDLayout::UXcgsHUDLayout(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	bAutoActivate = true;
+
+	// Change to GameAndMenu input mode when this widget is activated
+	bSupportsActivationFocus = true;
+	InputMode = EXcgsWidgetInputMode::GameAndMenu;
 }
 
 void UXcgsHUDLayout::NativeConstruct()

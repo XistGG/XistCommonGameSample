@@ -11,6 +11,11 @@
 UXcgsMainMenuWidget::UXcgsMainMenuWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	bAutoActivate = true;
+
+	// Change to Menu input mode when this widget is activated
+	bSupportsActivationFocus = true;
+	InputMode = EXcgsWidgetInputMode::Menu;
 }
 
 void UXcgsMainMenuWidget::NativeConstruct()
