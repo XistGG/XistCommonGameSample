@@ -2,6 +2,7 @@
 
 #include "XcgsInputConfig.h"
 
+#include "InputAction.h"
 #include "XcgsLog.h"
 
 

@@ -2,8 +2,6 @@
 
 #pragma once
 
-
-#include "CoreMinimal.h"
 #include "CommonGameViewportClient.h"
 #include "XcgsGameViewportClient.generated.h"
 

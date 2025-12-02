@@ -3,6 +3,7 @@
 #include "XcgsGameState.h"
 
 #include "XcgsGameplayTags.h"
+#include "Engine/World.h"
 #include "GameFramework/GameplayMessageSubsystem.h"
 #include "Messages/XcgsTimeMessage.h"
 

@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "CommonPlayerController.h"
 #include "XcgsPlayerController.generated.h"
 

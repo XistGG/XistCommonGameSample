@@ -4,6 +4,8 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "XcgsLog.h"
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/PlayerController.h"
 
 
 UEnhancedInputLocalPlayerSubsystem* UXcgsHelpers::GetEnhancedInputLocalPlayerSubsystem(const APlayerController* PlayerController)

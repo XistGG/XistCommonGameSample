@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameUIManagerSubsystem.h"
+#include "Containers/Ticker.h"
 #include "XcgsUIManagerSubsystem.generated.h"
 
 

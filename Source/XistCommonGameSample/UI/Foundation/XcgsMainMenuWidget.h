@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "UI/XcgsActivatableWidget.h"
 #include "XcgsMainMenuWidget.generated.h"
 

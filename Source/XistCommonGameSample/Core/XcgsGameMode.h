@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "ModularGameMode.h"
 #include "XcgsGameMode.generated.h"
 

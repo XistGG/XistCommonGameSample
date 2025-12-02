@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "CommonButtonBase.h"
 #include "UObject/Object.h"
 #include "XcgsButtonBase.generated.h"

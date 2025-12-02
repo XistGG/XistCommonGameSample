@@ -4,6 +4,6 @@
 
 
 UXcgsLocalPlayer::UXcgsLocalPlayer(const FObjectInitializer& ObjectInitializer)
-	: Super()  // UCommonLocalPlayer v5.3 doesn't support ObjectInitializer :/
+	: Super()  // UCommonLocalPlayer v5.7 doesn't support ObjectInitializer :/
 {
 }

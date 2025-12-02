@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "EnhancedInputComponent.h"
 #include "GameplayTags.h"
 #include "InputActionValue.h"

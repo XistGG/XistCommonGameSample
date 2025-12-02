@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "CommonLocalPlayer.h"
 #include "XcgsLocalPlayer.generated.h"
 
