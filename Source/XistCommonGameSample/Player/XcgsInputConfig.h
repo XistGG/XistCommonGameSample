@@ -6,6 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "XcgsInputConfig.generated.h"
 
+class UInputAction;
 
 /**
  * Input Action
