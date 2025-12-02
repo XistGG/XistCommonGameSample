@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
-
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsUIManagerSubsystem.h"
 
@@ -9,11 +8,7 @@
 #include "GameUIPolicy.h"
 #include "PrimaryGameLayout.h"
 
-class FSubsystemCollectionBase;
-
-
 UXcgsUIManagerSubsystem::UXcgsUIManagerSubsystem()
-	: Super()
 {
 }
 
@@ -26,9 +21,9 @@ void UXcgsUIManagerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UXcgsUIManagerSubsystem::Deinitialize()
 {
-	Super::Deinitialize();
-
 	FTSTicker::GetCoreTicker().RemoveTicker(TickHandle);
+
+	Super::Deinitialize();
 }
 
 bool UXcgsUIManagerSubsystem::Tick(float DeltaTime)
