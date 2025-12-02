@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
@@ -9,6 +9,7 @@ class UObject;
 
 
 DECLARE_LOG_CATEGORY_EXTERN(LogXcgs, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogXcgsUI, Log, All);
 
 
 FString XcgsGetClientServerContextString(UObject* ContextObject = nullptr);

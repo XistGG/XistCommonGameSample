@@ -1,9 +1,10 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsLog.h"
 
 
 DEFINE_LOG_CATEGORY(LogXcgs);
+DEFINE_LOG_CATEGORY(LogXcgsUI);
 
 
 const FString FalseString(TEXT("false"));
