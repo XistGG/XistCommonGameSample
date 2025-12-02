@@ -6,6 +6,10 @@ public class XistCommonGameSample : ModuleRules
 {
 	public XistCommonGameSample(ReadOnlyTargetRules Target) : base(Target)
 	{
+		// Add WITH_XCGS_DEBUG in DebugGame
+		int withXcgsDebug = Target.Configuration == UnrealTargetConfiguration.DebugGame ? 1 : 0;
+		PublicDefinitions.Add("WITH_XCGS_DEBUG=" + withXcgsDebug);
+
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		bUseUnity = false;
 

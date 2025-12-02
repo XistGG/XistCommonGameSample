@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsMainMenuWidget.h"
 
@@ -7,23 +7,41 @@
 #include "XcgsLog.h"
 #include "Input/CommonUIInputTypes.h"
 
-
+// Set Class Defaults
 UXcgsMainMenuWidget::UXcgsMainMenuWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	bAutoActivate = true;
+
+	// Change to Menu input mode when this widget is activated
+	bSupportsActivationFocus = true;
+	InputMode = EXcgsWidgetInputMode::Menu;
 }
 
-
-void UXcgsMainMenuWidget::NativeOnInitialized()
+void UXcgsMainMenuWidget::NativeConstruct()
 {
-	Super::NativeOnInitialized();
+	Super::NativeConstruct();
 
-	// This registers a "UI Action Binding" with CommonUI, such that when the UI_Action_MainMenu UI Action occurs,
-	// the delegate is called which forwards the event to our own HandleMainMenuAction
-	constexpr bool bShouldDisplayInActionBar = false;
-	RegisterUIActionBinding(FBindUIActionArgs(FUIActionTag::ConvertChecked(XcgsTag::UI_Action_MainMenu), bShouldDisplayInActionBar, FSimpleDelegate::CreateUObject(this, &ThisClass::HandleMainMenuAction)));
+	if (not IsDesignTime())
+	{
+		// This registers a "UI Action Binding" with CommonUI, such that when the UI_Action_MainMenu UI Action occurs,
+		// the delegate is called which forwards the event to our own HandleMainMenuAction
+		const auto ActionTag = FUIActionTag::ConvertChecked(XcgsTag::UI_Action_MainMenu);
+		const auto Delegate = FSimpleDelegate::CreateUObject(this, &ThisClass::HandleMainMenuAction);
+		constexpr bool bShouldDisplayInActionBar = false;
+		MenuActionHandle = RegisterUIActionBinding(FBindUIActionArgs(ActionTag, bShouldDisplayInActionBar, Delegate));
+	}
 }
 
+void UXcgsMainMenuWidget::NativeDestruct()
+{
+	if (MenuActionHandle.IsValid())
+	{
+		MenuActionHandle.Unregister();
+	}
+
+	Super::NativeDestruct();
+}
 
 void UXcgsMainMenuWidget::NativeOnActivated()
 {
@@ -34,7 +52,6 @@ void UXcgsMainMenuWidget::NativeOnActivated()
 	BlankGameWidget = UCommonUIExtensions::PushContentToLayer_ForPlayer(GetOwningLocalPlayer(), XcgsTag::UI_Layer_Game, BlankWidgetClass);
 	BlankGameMenuWidget = UCommonUIExtensions::PushContentToLayer_ForPlayer(GetOwningLocalPlayer(), XcgsTag::UI_Layer_GameMenu, BlankWidgetClass);
 }
-
 
 void UXcgsMainMenuWidget::NativeOnDeactivated()
 {
@@ -54,7 +71,6 @@ void UXcgsMainMenuWidget::NativeOnDeactivated()
 
 	Super::NativeOnDeactivated();
 }
-
 
 void UXcgsMainMenuWidget::HandleMainMenuAction()
 {
