@@ -1,12 +1,12 @@
 {
 	"FileVersion": 3,
 	"Version": 3,
-	"VersionName": "0.0.3.0",
-	"EngineAssociation": "5.3",
-	"Description": "Sample from Lyra 5.3 of CommonGame and its dependencies in a simple single player project",
+	"VersionName": "1.0.0.0",
+	"EngineAssociation": "5.7",
+	"Description": "Sample from Lyra 5.7 of CommonGame and its dependencies in a simple single player project",
 	"Category": "Gameplay",
 	"CreatedBy": "Xist.GG",
-	"CreatedByURL": "http://xist.gg",
+	"CreatedByURL": "https://xist.gg",
 	"DocsURL": "https://github.com/XistGG/XistCommonGameSample",
 	"MarketplaceURL": "",
 	"SupportURL": "",
@@ -36,6 +36,10 @@
 		{
 			"Name": "EnhancedInput",
 			"Enabled": true
+		},
+		{
+			"Name": "Fab",
+			"Enabled": false
 		},
 		{
 			"Name": "GameplayMessageRouter",

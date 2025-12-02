@@ -1,6 +1,5 @@
-// Copyright (c) 2023 xist.gg
+// Copyright (c) 2023-2025 Xist.GG LLC
 
-#include "XistCommonGameSample.h"
 #include "Modules/ModuleManager.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, XistCommonGameSample, "XistCommonGameSample" );

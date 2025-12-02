@@ -1,9 +1,11 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsHelpers.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "XcgsLog.h"
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/PlayerController.h"
 
 
 UEnhancedInputLocalPlayerSubsystem* UXcgsHelpers::GetEnhancedInputLocalPlayerSubsystem(const APlayerController* PlayerController)

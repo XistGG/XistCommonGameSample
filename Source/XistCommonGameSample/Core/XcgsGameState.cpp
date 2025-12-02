@@ -1,8 +1,9 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsGameState.h"
 
 #include "XcgsGameplayTags.h"
+#include "Engine/World.h"
 #include "GameFramework/GameplayMessageSubsystem.h"
 #include "Messages/XcgsTimeMessage.h"
 

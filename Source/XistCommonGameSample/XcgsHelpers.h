@@ -1,8 +1,8 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "XcgsHelpers.generated.h"
 
 

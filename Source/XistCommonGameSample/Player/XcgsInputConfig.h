@@ -1,11 +1,12 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "Engine/DataAsset.h"
 #include "XcgsInputConfig.generated.h"
 
+class UInputAction;
 
 /**
  * Input Action

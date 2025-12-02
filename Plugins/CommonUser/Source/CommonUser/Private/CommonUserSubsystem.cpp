@@ -115,6 +115,25 @@ void UCommonUserInfo::UpdateCachedNetId(const FUniqueNetIdRepl& NewId, ECommonUs
 	if (ensure(ContextCache))
 	{
 		ContextCache->CachedNetId = NewId;
+
+		// Update the nickname
+		const UCommonUserSubsystem* Subsystem = GetSubsystem();
+		if (ensure(Subsystem))
+		{
+			if (bIsGuest)
+			{
+				if (ContextCache->CachedNickname.IsEmpty())
+				{
+					// Set a default guest name if it is empty, can be changed with SetNickname
+					ContextCache->CachedNickname = NSLOCTEXT("CommonUser", "GuestNickname", "Guest").ToString();
+				}
+			}
+			else
+			{
+				// Refresh with the system nickname, overrides SetNickname
+				ContextCache->CachedNickname = Subsystem->GetLocalUserNickname(GetPlatformUserId(), Context);
+			}
+		}
 	}
 
 	// We don't merge the ids because of how guests work
@@ -252,37 +271,27 @@ FUniqueNetIdRepl UCommonUserInfo::GetNetId(ECommonUserOnlineContext Context) con
 	return FUniqueNetIdRepl();
 }
 
-FString UCommonUserInfo::GetNickname() const
+FString UCommonUserInfo::GetNickname(ECommonUserOnlineContext Context) const
 {
-	if (bIsGuest)
+	const FCachedData* FoundCached = GetCachedData(Context);
+
+	if (FoundCached)
 	{
-		return NSLOCTEXT("CommonUser", "GuestNickname", "Guest").ToString();
+		return FoundCached->CachedNickname;
 	}
 
-	const UCommonUserSubsystem* Subsystem = GetSubsystem();
-
-	if (ensure(Subsystem))
-	{
-#if COMMONUSER_OSSV1
-		IOnlineIdentity* Identity = Subsystem->GetOnlineIdentity(ECommonUserOnlineContext::Game);
-		if (ensure(Identity))
-		{
-			return Identity->GetPlayerNickname(GetPlatformUserIndex());
-		}
-#else
-		if (IAuthPtr AuthService = Subsystem->GetOnlineAuth(ECommonUserOnlineContext::Game))
-		{
-			if (TSharedPtr<FAccountInfo> AccountInfo = Subsystem->GetOnlineServiceAccountInfo(AuthService, GetPlatformUserId()))
-			{
-				if (const FSchemaVariant* DisplayName = AccountInfo->Attributes.Find(AccountAttributeData::DisplayName))
-				{
-					return DisplayName->GetString();
-				}
-			}
-		}
-#endif // COMMONUSER_OSSV1
-	}
+	// TODO maybe return unknown user here?
 	return FString();
+}
+
+void UCommonUserInfo::SetNickname(const FString& NewNickname, ECommonUserOnlineContext Context)
+{
+	FCachedData* ContextCache = GetCachedData(Context);
+
+	if (ensure(ContextCache))
+	{
+		ContextCache->CachedNickname = NewNickname;
+	}
 }
 
 FString UCommonUserInfo::GetDebugString() const
@@ -888,6 +897,30 @@ FUniqueNetIdRepl UCommonUserSubsystem::GetLocalUserNetId(FPlatformUserId Platfor
 	}
 
 	return FUniqueNetIdRepl();
+}
+
+FString UCommonUserSubsystem::GetLocalUserNickname(FPlatformUserId PlatformUser, ECommonUserOnlineContext Context) const
+{
+#if COMMONUSER_OSSV1
+	IOnlineIdentity* Identity = GetOnlineIdentity(Context);
+	if (ensure(Identity))
+	{
+		return Identity->GetPlayerNickname(GetPlatformUserIndexForId(PlatformUser));
+	}
+#else
+	if (IAuthPtr AuthService = GetOnlineAuth(Context))
+	{
+		if (TSharedPtr<FAccountInfo> AccountInfo = GetOnlineServiceAccountInfo(AuthService, PlatformUser))
+		{
+			if (const FSchemaVariant* DisplayName = AccountInfo->Attributes.Find(AccountAttributeData::DisplayName))
+			{
+				return DisplayName->GetString();
+			}
+		}
+	}
+#endif // COMMONUSER_OSSV1
+
+	return FString();
 }
 
 void UCommonUserSubsystem::SendSystemMessage(FGameplayTag MessageType, FText TitleText, FText BodyText)
@@ -1540,7 +1573,7 @@ void UCommonUserSubsystem::ProcessLoginRequest(TSharedRef<FUserLoginRequest> Req
 	}
 
 	// Check for overall success
-	if (CurrentStatus != ELoginStatusType::NotLoggedIn && CurrentId.IsValid())
+	if (bHasRequiredStatus && CurrentId.IsValid())
 	{
 		// Stall if we're waiting for the login UI to close
 		if (Request->LoginUIState == ECommonUserAsyncTaskState::InProgress)
@@ -1662,6 +1695,8 @@ void UCommonUserSubsystem::ProcessLoginRequest(TSharedRef<FUserLoginRequest> Req
 				Request->OverallLoginState = ECommonUserAsyncTaskState::NotStarted;
 				Request->PrivilegeCheckState = ECommonUserAsyncTaskState::NotStarted;
 				Request->TransferPlatformAuthState = ECommonUserAsyncTaskState::NotStarted;
+				Request->AutoLoginState = ECommonUserAsyncTaskState::NotStarted;
+				Request->LoginUIState = ECommonUserAsyncTaskState::NotStarted;
 
 				// Reprocess and immediately return
 				ProcessLoginRequest(Request);
@@ -2253,7 +2288,7 @@ FText UCommonUserSubsystem::GetPrivilegeDescription(ECommonUserPrivilege Privile
 	case ECommonUserPrivilege::CanUseCrossPlay:
 		return NSLOCTEXT("CommonUser", "PrivilegeCanUseCrossPlay", "play with other platforms");
 	default:
-		return NSLOCTEXT("CommonUser", "PrivilegeInvalid", "");
+		return NSLOCTEXT("CommonUser", "PrivilegeInvalid", "Invalid");
 	}
 }
 
@@ -2283,7 +2318,7 @@ FText UCommonUserSubsystem::GetPrivilegeResultDescription(ECommonUserPrivilegeRe
 	case ECommonUserPrivilegeResult::PlatformFailure:
 		return NSLOCTEXT("CommonUser", "ResultPlatformFailure", "Not allowed");
 	default:
-		return NSLOCTEXT("CommonUser", "ResultInvalid", "");
+		return NSLOCTEXT("CommonUser", "ResultInvalid", "Invalid");
 
 	}
 }
@@ -2642,7 +2677,7 @@ void UCommonUserSubsystem::HandleInputDeviceConnectionChanged(EInputDeviceConnec
 {
 	FString InputDeviceIDString = FString::Printf(TEXT("%d"), InputDeviceId.GetId());
 	const bool bIsConnected = NewConnectionState == EInputDeviceConnectionState::Connected;
-	UE_LOG(LogCommonUser, Log, TEXT("Controller connection changed - UserIdx:%d, UserID:%s, Connected:%d"), *InputDeviceIDString, *PlatformUserIdToString(PlatformUserId), bIsConnected ? 1 : 0);
+	UE_LOG(LogCommonUser, Log, TEXT("Controller connection changed - UserIdx:%s, UserID:%s, Connected:%d"), *InputDeviceIDString, *PlatformUserIdToString(PlatformUserId), bIsConnected ? 1 : 0);
 
 	// TODO Implement for platforms that support this
 }

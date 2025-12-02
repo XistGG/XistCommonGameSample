@@ -1,8 +1,7 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "CommonActivatableWidget.h"
 #include "XcgsActivatableWidget.generated.h"
 

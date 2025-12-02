@@ -1,7 +1,7 @@
 ﻿
 # Xist CommonGame Sample (Xcgs)
 
-**UE 5.3+ Lyra-like HUD & Input Setup**
+**UE 5.7 Lyra-like HUD & Input Setup**
 
 Official Repository: https://github.com/XistGG/XistCommonGameSample
 
@@ -103,7 +103,7 @@ I tried to minimize the INI files to remove stuff that didn't matter or wasn't r
 at all to this project, to make it easier to find those gems that **really do** matter.
 
 
-## Major Deviations from Lyra 5.3
+## Major Deviations from Lyra
 
 Xcgs deviates from Lyra in some significant ways:
 
@@ -123,7 +123,7 @@ Xcgs deviates from Lyra in some significant ways:
 - The concept of `UIExtension` is fantastic and something similar to it would be a great addition here as an upgrade
 
 
-## Plugins Copied from Lyra 5.3
+## Plugins Copied from Lyra 5.7
 
 Epic [distributes some plugins with Lyra](https://x157.github.io/UE5/LyraStarterGame/Plugins/)
 specifically.  I've copied some of them into this project.
@@ -131,14 +131,14 @@ specifically.  I've copied some of them into this project.
 
 ### Critical Plugins
 
-- `CommonGame`
-- `CommonUser`
+- [CommonGame](Plugins/CommonGame/)
+- [CommonUser](Plugins/CommonUser/)
 
 These plugins are absolutely critical to getting CommonUI and EnhancedInput working like Lyra.
 
 ### Amazing Plugins
 
-- `GameplayMessageRouter`
+- [GameplayMessageRouter](Plugins/GameplayMessageRouter/)
 
 This plugin should be distributed with UE5 Engine itself IMO.
 Every game needs one of these.
@@ -148,7 +148,7 @@ that may or may not exist at any given time.
 
 ### Optional Plugins
 
-- `ModularGameplayActors`
+- [ModularGameplayActors](Plugins/ModularGameplayActors/)
 
 Lyra extensively uses [GameFeature Plugins](https://x157.github.io/UE5/GameFeatures/),
 and `ModularGameplayActors` facilitates this.
@@ -166,7 +166,7 @@ For this project, the choice was very easy.  Your choice may differ.
 ## This Project is mostly Refactored Lyra
 
 Note that the majority of this code has been refactored from Epic's
-[LyraStarterGame](https://x157.github.io/UE5/LyraStarterGame/) 5.3
+[LyraStarterGame](https://x157.github.io/UE5/LyraStarterGame/) 5.7
 project.
 
 I did make some changes to simplify things and make them easier to understand,

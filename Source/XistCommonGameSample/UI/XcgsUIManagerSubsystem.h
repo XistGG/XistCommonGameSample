@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameUIManagerSubsystem.h"
+#include "Containers/Ticker.h"
 #include "XcgsUIManagerSubsystem.generated.h"
 
 
