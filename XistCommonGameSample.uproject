@@ -38,6 +38,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "Fab",
+			"Enabled": false
+		},
+		{
 			"Name": "GameplayMessageRouter",
 			"Enabled": true
 		}
