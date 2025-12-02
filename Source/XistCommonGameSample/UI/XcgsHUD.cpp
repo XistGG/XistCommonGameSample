@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsHUD.h"
 

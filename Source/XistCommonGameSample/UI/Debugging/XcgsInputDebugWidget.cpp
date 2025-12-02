@@ -1,6 +1,7 @@
-﻿// Copyright (c) 2023 xist.gg
+﻿// Copyright (c) 2023-2025 Xist.GG LLC
 
 #include "XcgsInputDebugWidget.h"
+
 #include "Engine/GameViewportClient.h"
 #include "Input/CommonUIActionRouterBase.h"
 
