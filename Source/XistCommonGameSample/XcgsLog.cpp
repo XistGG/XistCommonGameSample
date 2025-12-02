@@ -2,6 +2,9 @@
 
 #include "XcgsLog.h"
 
+#include "Engine/EngineTypes.h"
+#include "GameFramework/Actor.h"
+
 
 DEFINE_LOG_CATEGORY(LogXcgs);
 DEFINE_LOG_CATEGORY(LogXcgsUI);
