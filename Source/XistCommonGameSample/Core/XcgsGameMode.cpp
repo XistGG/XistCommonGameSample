@@ -5,6 +5,7 @@
 #include "XcgsGameState.h"
 #include "Player/XcgsPlayerController.h"
 #include "Player/XcgsPlayerPawn.h"
+#include "Player/XcgsPlayerState.h"
 #include "UI/XcgsHUD.h"
 
 
@@ -13,6 +14,7 @@ AXcgsGameMode::AXcgsGameMode(const FObjectInitializer& ObjectInitializer)
 {
 	GameStateClass = AXcgsGameState::StaticClass();
 	PlayerControllerClass = AXcgsPlayerController::StaticClass();
+	PlayerStateClass = AXcgsPlayerState::StaticClass();
 	DefaultPawnClass = AXcgsPlayerPawn::StaticClass();
 	HUDClass = AXcgsHUD::StaticClass();
 }
