@@ -1,12 +1,13 @@
-﻿// Copyright (c) 2023-2025 Xist.GG LLC
+// Copyright (c) 2023-2025 Xist.GG LLC
 
 #pragma once
 
 #include "CommonActivatableWidget.h"
 #include "XcgsActivatableWidget.generated.h"
 
-
 /**
+ * EXcgsWidgetInputMode
+ * 
  * Input Modes that XcgsActivatableWidgets can activate
  */
 UENUM(BlueprintType)
@@ -18,9 +19,8 @@ enum class EXcgsWidgetInputMode : uint8
 	Menu
 };
 
-
 /**
- * Activatable Widget
+ * UXcgsActivatableWidget
  *
  * An activatable widget that optionally overrides the input mode when activated
  */
@@ -30,15 +30,30 @@ class XISTCOMMONGAMESAMPLE_API UXcgsActivatableWidget : public UCommonActivatabl
 	GENERATED_BODY()
 
 public:
+	// Set Class Defaults
 	UXcgsActivatableWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
-	//~UCommonActivatableWidget interface
+	//~Begin UUserWidget interface
+	virtual void NativePreConstruct() override;
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+	//~End UUserWidget interface
+
+	//~Begin UCommonActivatableWidget interface
 	virtual TOptional<FUIInputConfig> GetDesiredInputConfig() const override;
-	//~End of UCommonActivatableWidget interface
+	virtual void NativeOnActivated() override;
+	virtual void NativeOnDeactivated() override;
+	//~End UCommonActivatableWidget interface
+
+	/** @return the ViewportClient of this widget's owning player */
+	UGameViewportClient* GetViewportClient() const;
 
 protected:
-	/** The desired input mode to use while this UI is activated, for example do you want key presses to still reach the game/player controller? */
+	/**
+	 * The desired input mode to use while this UI is activated
+	 *
+	 * When EXcgsWidgetInputMode::Default, NO CHANGES are made to input settings upon Activation of this widget.
+	 */
 	UPROPERTY(EditDefaultsOnly, Category=Input)
 	EXcgsWidgetInputMode InputMode = EXcgsWidgetInputMode::Default;
-
 };
